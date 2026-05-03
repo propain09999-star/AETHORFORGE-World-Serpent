@@ -1,5 +1,17 @@
 # code/dmaas/hybrid_router.py
-from code.grit.models import get_model
+"""
+AETHORFORGE Hybrid Router - Fixed imports
+"""
+
+try:
+    from ..grit.models import get_model
+except ImportError:
+    # Fallback for direct running
+    import sys
+    from pathlib import Path
+    sys.path.append(str(Path(__file__).parent.parent))
+    from grit.models import get_model
+
 
 class HybridRouter:
     def __init__(self):
@@ -18,7 +30,7 @@ class HybridRouter:
             return f"[Squire Tier] {final}"
 
 
-# Test
+# Quick test when running directly
 if __name__ == "__main__":
     router = HybridRouter()
     print(router.route("Simple metadata scan", 2))
